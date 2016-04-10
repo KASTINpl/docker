@@ -1,0 +1,21 @@
+fpm:
+    build: .
+    dockerfile: ./php56-fpm/Dockerfile
+    container_name: php56-fpm
+    log_driver: syslog
+    environment:
+      - TERM=xterm-256color
+    volumes:
+      - ~/.ssh:/root/.ssh
+      - ~/Projekty/:/var/www
+
+fpm7:
+    build: .
+    dockerfile: ./php7-fpm/Dockerfile
+    container_name: php7-fpm
+    log_driver: syslog
+    environment:
+      - TERM=xterm-256color
+    volumes:
+      - ~/.ssh:/root/.ssh
+      - ~/Projekty/:/var/www
