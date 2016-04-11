@@ -19,3 +19,14 @@ fpm7:
     volumes:
       - ~/.ssh:/root/.ssh
       - ~/Projekty/:/var/www
+
+composer:
+    build: .
+    dockerfile: ./composer/Dockerfile
+    container_name: composer
+    log_driver: syslog
+    environment:
+      - TERM=xterm-256color
+    volumes:
+      - ~/.ssh:/root/.ssh
+      - ~/Projekty/:/var/www
