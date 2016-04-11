@@ -25,3 +25,6 @@ RUN docker-php-ext-configure mbstring && \
     docker-php-ext-enable memcache mongo imagick
 
 WORKDIR /var/www
+
+COPY ./entrypoint.sh /
+ENTRYPOINT ["/entrypoint.sh"]
