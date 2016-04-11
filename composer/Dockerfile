@@ -11,7 +11,6 @@ RUN php -r "readfile('https://getcomposer.org/installer');" > composer-setup.php
     rm -f composer-setup.php
 
 WORKDIR /opt
-VOLUME /opt
 
 COPY ./entrypoint.sh /
 ENTRYPOINT ["/entrypoint.sh"]
