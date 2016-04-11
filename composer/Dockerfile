@@ -1,4 +1,4 @@
-FROM php:5-cli
+FROM php:5-fpm
 
 # install
 RUN apt-get update && apt-get -y install zip git

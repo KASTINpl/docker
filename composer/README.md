@@ -7,7 +7,7 @@
 5) Add `composer` rule as following:
 ```
 composer:
-	docker run --rm -it -v $PWD:/opt kastinpl/composer "composer --ignore-platform-reqs --working-dir=/opt $(cmd)"
+	docker run --rm -it -v $$(pwd)/:/opt kastinpl/composer "composer --ignore-platform-reqs --working-dir=/opt $(cmd)"
 ```
 
 # run
