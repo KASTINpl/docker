@@ -1,4 +1,4 @@
-FROM php:5-fpm
+FROM php:5-cli
 
 # install
 RUN apt-get update && apt-get -y install zip git
@@ -11,6 +11,3 @@ RUN php -r "readfile('https://getcomposer.org/installer');" > composer-setup.php
     rm -f composer-setup.php
 
 WORKDIR /opt
-
-COPY ./entrypoint.sh /
-ENTRYPOINT ["/entrypoint.sh"]
