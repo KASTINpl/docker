@@ -2,10 +2,10 @@ FROM php:5-fpm
 
 # install
 RUN apt-get update && apt-get install -y \
-        libfreetype6-dev \
-        libjpeg62-turbo-dev \
-        libmcrypt-dev \
-        libpng12-dev \
+    libfreetype6-dev \
+    libjpeg62-turbo-dev \
+    libmcrypt-dev \
+    libpng12-dev \
 	libicu-dev \
 	libz-dev libmemcached-dev \
 	libffi-dev libssl-dev \
@@ -20,7 +20,7 @@ RUN curl -fsSL 'http://www.imagemagick.org/download/ImageMagick.tar.gz' -o Image
 
 RUN docker-php-ext-configure mbstring && \
     docker-php-ext-configure gd --with-freetype-dir=/usr/include/ --with-jpeg-dir=/usr/include/ && \
-    docker-php-ext-install -j$(nproc) gd iconv mcrypt bcmath fileinfo iconv intl zip && \
+    docker-php-ext-install -j$(nproc) gd iconv mcrypt bcmath fileinfo intl zip && \
     pecl install memcache mongo imagick && \
     docker-php-ext-enable memcache mongo imagick
 
@@ -28,3 +28,5 @@ WORKDIR /var/www
 
 COPY ./entrypoint.sh /
 ENTRYPOINT ["/entrypoint.sh"]
+
+CMD ["php-fpm"]
