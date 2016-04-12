@@ -26,5 +26,7 @@ RUN docker-php-ext-configure mbstring && \
 
 WORKDIR /opt
 
-EXPOSE 9000
-CMD php-fpm
+COPY ./entrypoint.sh /
+ENTRYPOINT ["/entrypoint.sh"]
+
+CMD ["php-fpm"]
