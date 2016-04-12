@@ -17,7 +17,8 @@ bower:
 		bower sebp/ember --config.interactive=false -f -q $(cmd)
 
 composer:
-	docker exec -it goodfood-backend-fpm bash -c "composer --working-dir=/var/www --ignore-platform-reqs $(cmd)"
+	docker run --rm -it -v ~/.ssh:/root/.ssh -v $$(pwd)/:/opt -u `id -u` kastinpl/composer \
+	 "composer --ignore-platform-reqs --working-dir=/opt $(cmd)"
 
 deploy:
 	git pull && \
