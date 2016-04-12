@@ -23,3 +23,5 @@ RUN docker-php-ext-configure mbstring && \
     docker-php-ext-install -j$(nproc) gd iconv mcrypt bcmath fileinfo intl zip && \
     pecl install memcache mongo imagick && \
     docker-php-ext-enable memcache mongo imagick
+
+CMD ["php-fpm"]
