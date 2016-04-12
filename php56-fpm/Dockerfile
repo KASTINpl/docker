@@ -24,4 +24,7 @@ RUN docker-php-ext-configure mbstring && \
     pecl install memcache mongo imagick && \
     docker-php-ext-enable memcache mongo imagick
 
-CMD ["php-fpm"]
+WORKDIR /opt
+
+EXPOSE 9000
+CMD php-fpm
