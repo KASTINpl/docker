@@ -1,28 +1,25 @@
 fpm:
-    build: .
-    dockerfile: ./php56-fpm/Dockerfile
+    build: ./php56-fpm/
     container_name: php56-fpm
-    log_driver: syslog
     environment:
       - TERM=xterm-256color
     volumes:
-      - ~/.ssh:/root/.ssh
-      - ~/Projekty/:/var/www
+      - ~/Projekty/test-docker/:/opt
 
-fpm7:
-    build: .
-    dockerfile: ./php7-fpm/Dockerfile
-    container_name: php7-fpm
-    log_driver: syslog
+nginx:
+    build: ./nginx/
+    container_name: nginx
     environment:
       - TERM=xterm-256color
     volumes:
-      - ~/.ssh:/root/.ssh
-      - ~/Projekty/:/var/www
+      - ./nginx/demo.conf:/etc/nginx/conf.d/default.conf
+      - ~/Projekty/test-docker/:/opt
+    links:
+      - fpm
 
 composer:
-    build: .
-    dockerfile: ./composer/Dockerfile
+    build: ./composer/
+    dockerfile: ./Dockerfile
     container_name: composer
     log_driver: syslog
     environment:
