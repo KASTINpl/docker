@@ -17,9 +17,10 @@ bower:
 		bower sebp/ember --config.interactive=false -f -q $(cmd)
 
 composer:
-	@docker run --rm -it -u `id -u` \
+	@docker run --rm -it \
 	 -v ~/.ssh:/root/.ssh \
 	 -v $$(pwd)/:/opt \
+	 -v ~/.docker-composer/:/home/php/.composer
 	 kastinpl/composer composer --ignore-platform-reqs --working-dir=/opt $(cmd)
 
 deploy:

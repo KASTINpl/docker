@@ -26,4 +26,5 @@ composer:
       - TERM=xterm-256color
     volumes:
       - ~/.ssh:/root/.ssh
-      - ~/Projekty/:/var/www
+      - ~/.docker-composer/:/home/php/.composer
+      - ~/Projekty/:/opt
