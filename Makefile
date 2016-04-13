@@ -17,8 +17,10 @@ bower:
 		bower sebp/ember --config.interactive=false -f -q $(cmd)
 
 composer:
-	docker run --rm -it -v ~/.ssh:/root/.ssh -v $$(pwd)/:/opt -u `id -u` kastinpl/composer \
-	 "composer --ignore-platform-reqs --working-dir=/opt $(cmd)"
+	@docker run --rm -it -u `id -u` \
+	 -v ~/.ssh:/root/.ssh \
+	 -v $$(pwd)/:/opt \
+	 kastinpl/composer composer --ignore-platform-reqs --working-dir=/opt $(cmd)
 
 deploy:
 	git pull && \

@@ -10,4 +10,6 @@ RUN php -r "readfile('https://getcomposer.org/installer');" > composer-setup.php
     php composer-setup.php --filename=composer --install-dir=/bin && \
     rm -f composer-setup.php
 
+VOLUME /.composer
+
 WORKDIR /opt
