@@ -1,5 +1,4 @@
 FROM nginx:stable
-MAINTAINER Kastin "kastin@kastin.pl"
 
 WORKDIR /opt
 
