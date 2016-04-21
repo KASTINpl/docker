@@ -6,6 +6,6 @@ composer:
     environment:
       - TERM=xterm-256color
     volumes:
-      - ~/.ssh:/root/.ssh
+      - ~/.ssh:/home/php/.ssh
       - ~/.docker-composer/:/home/php/.composer
       - ~/Projekty/:/opt
