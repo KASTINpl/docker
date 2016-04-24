@@ -1,6 +1,6 @@
 fpm:
-    build: ./php56-fpm/
-    container_name: php56-fpm
+    build: ./php7-fpm/
+    container_name: php7-fpm
     environment:
       - TERM=xterm-256color
     volumes:

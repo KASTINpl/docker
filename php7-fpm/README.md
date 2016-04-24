@@ -1,9 +1,9 @@
-### PHP-FPM 5.x
+### PHP-FPM 7.x
 
 # info
-FROM php:5-fpm
+FROM php:7-fpm
 + imagemagick installed
-+ mbstring, gd + freetype, gd, iconv, mcrypt, bcmath, fileinfo, intl, gettext, zip, memcache, mongo, imagick installed
++ mbstring, gd + freetype, gd, iconv, mcrypt, bcmath, fileinfo, intl, gettext, zip, mongodb, imagick installed
 
 # features
 + works as Your local user (thanks to "UID mapping")
@@ -16,11 +16,11 @@ Docker's php works as "www-data" user. After mapping Your local directory with p
 
 1) Create `docker-compose.yml` in Your project
 
-5) Add `fpm` rule as following:
+7) Add `fpm` rule as following:
 ```
 fpm:
-    image: kastinpl/php56-fpm
-    container_name: php56-fpm
+    image: kastinpl/php7-fpm
+    container_name: php7-fpm
     environment:
       - TERM=xterm-256color
     volumes:

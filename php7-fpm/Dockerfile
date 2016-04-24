@@ -1,4 +1,4 @@
-FROM php:5-fpm
+FROM php:7-fpm
 
 # install & cleanup
 RUN apt-get update && apt-get install -y \
@@ -19,8 +19,8 @@ RUN curl -fsSL 'http://www.imagemagick.org/download/ImageMagick.tar.gz' -o Image
 RUN docker-php-ext-configure mbstring && \
     docker-php-ext-configure gd --with-freetype-dir=/usr/include/ --with-jpeg-dir=/usr/include/ && \
     docker-php-ext-install -j$(nproc) gd iconv mcrypt bcmath fileinfo intl gettext zip && \
-    pecl install memcache mongo imagick && \
-    docker-php-ext-enable memcache mongo imagick
+    pecl install mongodb imagick && \
+    docker-php-ext-enable mongodb imagick
 
 WORKDIR /opt
 
