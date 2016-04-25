@@ -1,4 +1,4 @@
-FROM dockerfile/nodejs-bower-grunt
+FROM digitallyseamless/nodejs-bower-grunt
 
 # create local user to map in as UID of /opt
 RUN adduser --disabled-password --home /home/nodejs nodejs

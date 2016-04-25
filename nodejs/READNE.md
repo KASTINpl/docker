@@ -1,7 +1,9 @@
 ### nodeJS, bower, grunt
 
 # info
-see http://dockerfile.github.io/#/nodejs-bower-grunt
+see
+http://dockerfile.github.io/#/nodejs-bower-grunt
+https://hub.docker.com/r/digitallyseamless/nodejs-bower-grunt/
 
 # features
 + using Your local SSH key
