@@ -1,11 +1,11 @@
 composer:
-    build: ./composer/
+    build: ./nodejs/
     dockerfile: ./Dockerfile
-    container_name: composer
+    container_name: nodejs
     log_driver: syslog
     environment:
       - TERM=xterm-256color
     volumes:
-      - ~/.ssh:/home/php/.ssh
-      - ~/.docker-composer/:/home/php/.composer
+      - ~/.ssh:/home/nodejs/.ssh
+      - ~/.docker-bower/:/home/nodejs/.bower
       - ~/Projekty/:/opt
