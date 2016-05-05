@@ -1,10 +1,11 @@
-SHELL := /bin/bash
+CMD=$(filter-out $@,$(MAKECMDGOALS))
 
-########################################
+getIP: ; @docker inspect --format '{{ .NetworkSettings.IPAddress }}' ${CMD}
 
-composer:
-	@docker run --rm -it \
-             -v ~/.ssh/:/home/nodejs/.ssh \
-             -v ~/.docker-bower/:/home/nodejs/.bower \
-             -v $$(pwd)/:/opt \
-             kastinpl/nodejs bower --config.interactive=true -f -q $(cmd)
+bower: ; @docker run --rm -it \
+    -v ~/.ssh/:/home/nodejs/.ssh \
+    -v ~/.docker-bower/:/home/nodejs/.bower \
+    -v $$(pwd)/:/opt \
+    kastinpl/nodejs bower ${CMD}
+
+%: ; @:

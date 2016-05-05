@@ -16,16 +16,19 @@ Docker's node works as "nodejs" user. After mapping Your local directory with pr
 
 # build
 
-1) Create `Makefile` in Your project
-
-5) Add `composer` rule as following:
+* Create `Makefile` in Your project
 ```
-bower:
-	@docker run --rm -it \
-        -v ~/.ssh/:/home/nodejs/.ssh \
-        -v ~/.docker-bower/:/home/nodejs/.bower \
-        -v $$(pwd)/:/opt \
-        kastinpl/nodejs bower --config.interactive=false -f -q $(cmd)
+CMD=$(filter-out $@,$(MAKECMDGOALS))
+
+getIP: ; @docker inspect --format '{{ .NetworkSettings.IPAddress }}' ${CMD}
+
+bower: ; @docker run --rm -it \
+    -v ~/.ssh/:/home/nodejs/.ssh \
+    -v ~/.docker-bower/:/home/nodejs/.bower \
+    -v $$(pwd)/:/opt \
+    kastinpl/nodejs bower ${CMD}
+
+%: ; @:
 ```
 
 * in 1st command line, before `@docker run ` has to be TAB "\t" char
@@ -36,7 +39,6 @@ bower:
 # run
 
 ```
-make bower cmd=install
-make bower cmd=update
-make bower cmd=require jquery --save
+make bower update
+make bower install jquery --save
 ```
