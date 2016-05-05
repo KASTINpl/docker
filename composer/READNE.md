@@ -18,19 +18,19 @@ Docker's composer works as "php" user. After mapping Your local directory with p
 
 # build
 
-1) Create `Makefile` in Your project
-
-5) Add `composer` rule as following:
+* Create `Makefile` in Your project
 ```
-composer:
-	@docker run --rm -it \
-     -v ~/.ssh:/home/php/.ssh \
-     -v $$(pwd)/:/opt \
-     -v ~/.docker-composer/:/home/php/.composer \
-     kastinpl/composer composer --ignore-platform-reqs --working-dir=/opt $(cmd)
+CMD=$(filter-out $@,$(MAKECMDGOALS))
+
+composer: ; @docker run --rm -it \
+          -v ~/.ssh:/home/php/.ssh \
+          -v $$(pwd)/:/opt \
+          -v ~/.docker-composer/:/home/php/.composer \
+          kastinpl/composer composer --ignore-platform-reqs --working-dir=/opt ${CMD}
+
+%: ; @:
 ```
 
-* in 1st command line, before `@docker run ` has to be TAB "\t" char
 * set up `/home/php/.ssh` docker's location to use Your local SSH keys
 * set up `/opt` docker's location as main project directory (with composer.json)
 * set up `/home/php/.composer` docker's location to store composer temporary files
@@ -39,7 +39,7 @@ composer:
 # run
 
 ```
-make composer cmd=install
-make composer cmd=update
-make composer cmd=require doctrine/mongodb-odm
+make composer install
+make composer update
+make composer require doctrine/mongodb-odm
 ```
