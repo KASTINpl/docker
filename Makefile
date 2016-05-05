@@ -1,17 +1,17 @@
-SHELL := /bin/bash
+CMD=$(filter-out $@,$(MAKECMDGOALS))
 
-########################################
+getIP: ; @docker inspect --format '{{ .NetworkSettings.IPAddress }}' ${CMD}
 
-getIP:
-	@docker inspect --format '{{ .NetworkSettings.IPAddress }}' $(name)
+bower: ; @docker run --rm -it \
+    -v ~/.ssh/:/home/nodejs/.ssh \
+    -v ~/.docker-bower/:/home/nodejs/.bower \
+    -v $$(pwd)/:/opt \
+    kastinpl/nodejs bower ${CMD}
 
-bower:
-	@docker run -it --rm -v $$(pwd):/data -v ~/.ssh:/root/.ssh -w /data -u `id -u` --entrypoint \
-		bower sebp/ember --config.interactive=false -f -q $(cmd)
+composer: ; @docker run --rm -it \
+    -v ~/.ssh:/home/php/.ssh \
+    -v $$(pwd)/:/opt \
+    -v ~/.docker-composer/:/home/php/.composer \
+    kastinpl/composer composer --ignore-platform-reqs --working-dir=/opt ${CMD}
 
-composer:
-	@docker run --rm -it \
-	 -v ~/.ssh:/root/.ssh \
-	 -v $$(pwd)/:/opt \
-	 -v ~/.docker-composer/:/home/php/.composer
-	 kastinpl/composer composer --ignore-platform-reqs --working-dir=/opt $(cmd)
+%: ; @:
