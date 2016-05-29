@@ -40,5 +40,5 @@ bower: ; @docker run --rm -it \
 
 ```
 make bower update
-make bower install jquery --save
+make bower CMD="install jquery --save"
 ```
