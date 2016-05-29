@@ -42,4 +42,5 @@ composer: ; @docker run --rm -it \
 make composer install
 make composer update
 make composer require doctrine/mongodb-odm
+make composer CMD="require -vvv"
 ```
